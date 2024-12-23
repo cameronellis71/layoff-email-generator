@@ -157,7 +157,7 @@ function App() {
 
       {/* Text below the input box */}
       <p style={{ fontSize: "12px", color: "#888", textAlign: "center", marginTop: "5px" }}>
-        LayoffEmailGenerator can make mistakes. Check important info.
+        LayoffEmailGPT can make mistakes. Check important info.
       </p>
     </div>
   );
