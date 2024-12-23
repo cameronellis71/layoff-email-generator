@@ -1,10 +1,17 @@
-# Getting Started with Create React App
+# Layoff Email GPT
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## About
+- Automates away the need to generate a layoff email
+- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm run deploy`
+
+Builds the app and deploys it to the server
 
 ### `npm start`
 
