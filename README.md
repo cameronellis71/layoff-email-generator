@@ -1,9 +1,8 @@
-# Layoff Email GPT
+# LayoffEmail GPT
 
+Effortlessly create a tailored & engaging layoff email with a focus on quality, relevance, & brevity
 
-## About
-- Automates away the need to generate a layoff email
-- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img width="686" alt="LayoffEmailGPT" src="https://github.com/user-attachments/assets/4b761855-c046-4aa3-95c1-a1231369920a" />
 
 ## Available Scripts
 
