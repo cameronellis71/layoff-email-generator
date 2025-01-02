@@ -7,7 +7,7 @@ function App() {
       "I'll ask you a few questions and all you have to do is provide an answer. I'll do the rest. " +
       "\n\nIf you can't think of anything, use one of the suggestions" +
       "\n\nTo start, can you give me a number?", suggestions: ["10,000", "1,000", "5,000"] },
-    { question: "Can you give me a company name?", suggestions: ["Snap", "Microsoft", "TikTok"] },
+    { question: "Can you give me a company name?", suggestions: ["Snup", "Macrosoft", "TokTik"] },
     { question: "Can you give me a reason for the layoff?", suggestions: ["conflict in the Middle East", "macroeconomic headwinds", "Mercury in retrograde"] },
     { question: "Can you give me a number?", suggestions: ["10,000", "1,000", "5,000"] },
     { question: "Can you give me a name?", suggestions: ["Evan", "Jeff", "Sundar"]}
