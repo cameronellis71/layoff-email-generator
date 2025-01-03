@@ -5,7 +5,7 @@ function App() {
   const questions = [
     { question: "Hello! I'm a chatbot that can help you write a layoff email\n\n" +
       "I'll ask you a few questions and all you have to do is provide an answer. I'll do the rest. " +
-      "\n\nIf you can't think of anything, use one of the suggestions" +
+      "\n\nIf you can't think of anything, use one of the suggestions below" +
       "\n\nTo start, can you give me a number?", suggestions: ["10,000", "1,000", "5,000"] },
     { question: "Can you give me a company name?", suggestions: ["Snup", "Macrosoft", "TokTik"] },
     { question: "Can you give me a reason for the layoff?", suggestions: ["conflict in the Middle East", "macroeconomic headwinds", "Mercury in retrograde"] },
