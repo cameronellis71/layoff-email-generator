@@ -56,7 +56,7 @@ function App() {
       "\n\n" +
       "We know our unique culture, and our values of being kind, smart, and creative, are a reflection of the " +
       "amazing people who work at " + answers[1] + ". It pains me that many people I have deeply enjoyed working" +
-      " with, who I know firsthand are extremely talented, will no longer be members of our team at Snap. We are" +
+      " with, who I know firsthand are extremely talented, will no longer be members of our team at " + answers[1] + ". We are" +
       " infinitely grateful for your contributions, your hard work, and your ambition to make a positive impact" +
       " in the world." +
       "\n\n" +
