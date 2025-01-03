@@ -146,15 +146,6 @@ function App() {
           placeholder="Type your response here..." // Hint inside the text box
           style={{ width: "80%", padding: "10px" }}
         />
-        <button
-          onClick={() => {
-            handleSend(input);
-            setInput("");
-          }}
-          style={{ padding: "10px", marginLeft: "10px" }}
-        >
-          Send
-        </button>
       </div>
 
       {/* Text below the input box */}
