@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 
 function App() {
-  // Predefined list of questions with unique suggestions
   const questions = [
     { question: "Hello! I'm a chatbot that can help you write a layoff email\n\n" +
       "I'll ask you a few questions and all you have to do is provide an answer. I'll do the rest. " +
@@ -103,6 +102,7 @@ function App() {
           transition: "width 0.3s ease", // Smooth transition
         }}
       >
+        {/* Close sidebar*/}
         {isSidebarOpen && (
           <div style={{ padding: "10px" }}>
             <button
@@ -116,21 +116,21 @@ function App() {
                 marginTop: "auto",
               }}
             >
-              Collapse Sidebar
+              Sidebar
             </button>
           </div>
         )}
       </div>
 
-      {/* Main Content */}
-      <div style={{ flex: "1", padding: "20px", transition: "margin-left 0.3s ease" }}>
-        {/* Header with "LayoffEmailGPT" and Expand Sidebar Button */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <h2>LayoffEmailGPT</h2>
-          {!isSidebarOpen && (
-            <button
+      <div>
+        {/* Expand Sidebar Button (fixed to the top-left corner when collapsed) */}
+        {!isSidebarOpen && (
+          <button
               onClick={() => setIsSidebarOpen(true)}
               style={{
+                position: "absolute",
+                top: "10px",
+                left: "10px",
                 background: "#007bff",
                 color: "#fff",
                 border: "none",
@@ -138,10 +138,26 @@ function App() {
                 borderRadius: "5px",
                 cursor: "pointer",
               }}
-            >
-              Expand Sidebar
-            </button>
-          )}
+          >
+            Sidebar
+          </button>
+          
+        )}
+      </div>
+
+      {/* Main Content */}
+      <div style={{ flex: "1", padding: "20px", transition: "margin-left 0.3s ease", maxWidth: "800px", width: "100%", marginLeft: "auto", marginRight: "auto"}}>
+
+        {/* Header with "LayoffEmailGPT" */}
+        <div style={{ 
+          display: "flex", 
+          justifyContent: "space-between", 
+          alignItems: "center", 
+          width: isSidebarOpen ? "100%" : "calc(100% - 250px)", // Navbar expands and contracts based on sidebar state
+          transition: "width 0.3s ease", // Smooth transition for navbar width
+          position: "relative" // Allows positioning of the button within the navbar
+        }}>
+          <h2>LayoffEmailGPT</h2>
         </div>
 
         <div style={{ border: "0px", padding: "10px", flex: "1", overflowY: "scroll", height: "80vh" }}>
