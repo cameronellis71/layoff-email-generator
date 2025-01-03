@@ -126,7 +126,7 @@ function App() {
                 background: "#007bff",
                 color: "#fff",
                 border: "none",
-                borderRadius: "5px",
+                borderRadius: "10px",
                 cursor: "pointer",
               }}
             >
@@ -145,7 +145,7 @@ function App() {
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder="Message LayoffEmailGPT"
-          style={{ flex: "1", padding: "10px", border: "1px solid #ccc", borderRadius: "5px" }}
+          style={{ flex: "1", padding: "10px", border: "1px solid #ccc", borderRadius: "10px" }}
         />
         <button
           onClick={() => {
@@ -158,7 +158,7 @@ function App() {
             background: "#007bff",
             color: "#fff",
             border: "none",
-            borderRadius: "5px",
+            borderRadius: "10px",
             cursor: "pointer",
           }}
         >
