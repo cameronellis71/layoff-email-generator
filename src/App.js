@@ -136,16 +136,34 @@ function App() {
         </div>
       )}
 
-      {/* Input Box for User-Entered Text */}
-      <div style={{ marginTop: "10px" }}>
+
+      {/* Input Box */}
+      <div style={{ marginTop: "10px", display: "flex", flexDirection: "row", width: "100%" }}>
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyDown} // Handles "Enter" key press
-          placeholder="Message LayoffEmailGPT" // Hint inside the text box
-          style={{ width: "80%", padding: "10px" }}
+          onKeyDown={handleKeyDown}
+          placeholder="Message LayoffEmailGPT"
+          style={{ flex: "1", padding: "10px", border: "1px solid #ccc", borderRadius: "5px" }}
         />
+        <button
+          onClick={() => {
+            handleSend(input);
+            setInput("");
+          }}
+          style={{
+            padding: "10px",
+            marginLeft: "10px",
+            background: "#007bff",
+            color: "#fff",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+          }}
+        >
+          Send
+        </button>
       </div>
 
       {/* Text below the input box */}
