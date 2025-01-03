@@ -143,7 +143,7 @@ function App() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown} // Handles "Enter" key press
-          placeholder="Type your response here..." // Hint inside the text box
+          placeholder="Message LayoffEmailGPT" // Hint inside the text box
           style={{ width: "80%", padding: "10px" }}
         />
       </div>
