@@ -86,6 +86,8 @@ function App() {
 
   return (
     <div style={{ padding: "20px", width: "80%", maxWidth: "800px", margin: "auto", fontFamily: "Arial", height: "85vh", display: "flex", flexDirection: "column" }}>
+      <p><b>LayoffEmailGPT</b></p>
+
       <div style={{ border: "1px solid #ccc", padding: "10px", flex: "1", overflowY: "scroll" }}>
       {messages.map((msg, index) => (
         <div key={index} style={{ textAlign: msg.sender === "bot" ? "left" : "right" }}>
