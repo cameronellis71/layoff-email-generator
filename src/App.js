@@ -84,8 +84,9 @@ function App() {
     }
   };
 
-  // Hover styles for suggestion buttons
+  // Hover states for buttons
   const [hoverIndex, setHoverIndex] = useState(null);
+  const [isSendButtonHovered, setIsSendButtonHovered] = useState(false); // State for "Send" button hover
 
   return (
     <div style={{ padding: "20px", width: "80%", maxWidth: "800px", margin: "auto", fontFamily: "Arial", height: "85vh", display: "flex", flexDirection: "column" }}>
@@ -142,8 +143,7 @@ function App() {
         </div>
       )}
 
-
-      {/* Input Box */}
+      {/* Input Box and Send Button */}
       <div style={{ marginTop: "10px", display: "flex", flexDirection: "row", width: "100%" }}>
         <input
           type="text"
@@ -158,14 +158,17 @@ function App() {
             handleSend(input);
             setInput("");
           }}
+          onMouseEnter={() => setIsSendButtonHovered(true)} // Set hover state for "Send" button
+          onMouseLeave={() => setIsSendButtonHovered(false)} // Remove hover state for "Send" button
           style={{
             padding: "10px",
             marginLeft: "10px",
-            background: "#007bff",
+            background: isSendButtonHovered ? "#0056b3" : "#007bff", // Darker blue on hover
             color: "#fff",
             border: "none",
             borderRadius: "10px",
             cursor: "pointer",
+            transition: "background 0.3s ease", // Smooth transition for hover effect
           }}
         >
           Send
