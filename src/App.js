@@ -84,6 +84,9 @@ function App() {
     }
   };
 
+  // Hover styles for suggestion buttons
+  const [hoverIndex, setHoverIndex] = useState(null);
+
   return (
     <div style={{ padding: "20px", width: "80%", maxWidth: "800px", margin: "auto", fontFamily: "Arial", height: "85vh", display: "flex", flexDirection: "column" }}>
       <p><b>LayoffEmailGPT</b></p>
@@ -120,14 +123,17 @@ function App() {
             <button
               key={index}
               onClick={() => handleSuggestionClick(suggestion)}
+              onMouseEnter={() => setHoverIndex(index)} // Set hover index
+              onMouseLeave={() => setHoverIndex(null)} // Remove hover index
               style={{
                 margin: "5px",
                 padding: "10px",
-                background: "#007bff",
+                background: hoverIndex === index ? "#0056b3" : "#007bff", // Darker blue on hover
                 color: "#fff",
                 border: "none",
                 borderRadius: "10px",
                 cursor: "pointer",
+                transition: "background 0.3s ease", // Smooth transition for hover effect
               }}
             >
               {suggestion}
