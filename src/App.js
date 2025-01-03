@@ -19,6 +19,7 @@ function App() {
   const [messages, setMessages] = useState([
     { sender: "bot", text: questions[0].question }, // Initial question
   ]);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Sidebar state
 
   const chatEndRef = useRef(null); // Reference to the end of the chat
 
@@ -89,96 +90,155 @@ function App() {
   const [isSendButtonHovered, setIsSendButtonHovered] = useState(false); // State for "Send" button hover
 
   return (
-    <div style={{ padding: "20px", width: "80%", maxWidth: "800px", margin: "auto", fontFamily: "Arial", height: "85vh", display: "flex", flexDirection: "column" }}>
-      <p><b>LayoffEmailGPT</b></p>
-
-      <div style={{ padding: "10px", flex: "1", overflowY: "scroll" }}>
-      {messages.map((msg, index) => (
-        <div key={index} style={{ textAlign: msg.sender === "bot" ? "left" : "right" }}>
-          <p style={{
-            background: msg.sender === "bot" ? "#f1f1f1" : "#007bff",
-            color: msg.sender === "bot" ? "#000" : "#fff",
-            display: "inline-block",
-            padding: "10px",
-            borderRadius: "10px",
-            maxWidth: "70%",
-          }}>
-            {/* Replace newlines with <br /> */}
-            {msg.text.split("\n").map((line, i) => (
-              <span key={i}>
-                {line}
-                {i < msg.text.split("\n").length - 1 && <br />} {/* Add a line break between lines */}
-              </span>
-            ))}
-          </p>
-        </div>
-      ))}
-        {/* Empty div to serve as the scroll anchor */}
-        <div ref={chatEndRef}></div>
-      </div>
-
-      {/* Suggestion Buttons */}
-      {currentQuestionIndex < questions.length && (
-        <div style={{ marginTop: "10px" }}>
-          {questions[currentQuestionIndex]?.suggestions?.map((suggestion, index) => (
+    <div style={{ display: "flex", height: "100vh", fontFamily: "Arial" }}>
+      {/* Sidebar */}
+      <div
+        style={{
+          width: isSidebarOpen ? "250px" : "0", // Smooth transition for sidebar width
+          background: "#333",
+          color: "#fff",
+          display: "flex",
+          flexDirection: "column",
+          overflow: "hidden", // Prevents content overflow when collapsed
+          transition: "width 0.3s ease", // Smooth transition
+        }}
+      >
+        {isSidebarOpen && (
+          <div style={{ padding: "10px" }}>
             <button
-              key={index}
-              onClick={() => handleSuggestionClick(suggestion)}
-              onMouseEnter={() => setHoverIndex(index)} // Set hover index
-              onMouseLeave={() => setHoverIndex(null)} // Remove hover index
+              onClick={() => setIsSidebarOpen(false)}
               style={{
-                margin: "5px",
-                padding: "10px",
-                background: hoverIndex === index ? "#0056b3" : "#007bff", // Darker blue on hover
+                background: "#444",
                 color: "#fff",
                 border: "none",
-                borderRadius: "10px",
+                padding: "10px",
                 cursor: "pointer",
-                transition: "background 0.3s ease", // Smooth transition for hover effect
+                marginTop: "auto",
               }}
             >
-              {suggestion}
+              Collapse Sidebar
             </button>
-          ))}
-        </div>
-      )}
-
-      {/* Input Box and Send Button */}
-      <div style={{ marginTop: "10px", display: "flex", flexDirection: "row", width: "100%" }}>
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyDown}
-          placeholder="Message LayoffEmailGPT"
-          style={{ flex: "1", padding: "10px", border: "0px", borderRadius: "10px", background: "#f1f1f1" }}
-        />
-        <button
-          onClick={() => {
-            handleSend(input);
-            setInput("");
-          }}
-          onMouseEnter={() => setIsSendButtonHovered(true)} // Set hover state for "Send" button
-          onMouseLeave={() => setIsSendButtonHovered(false)} // Remove hover state for "Send" button
-          style={{
-            padding: "10px",
-            marginLeft: "10px",
-            background: isSendButtonHovered ? "#0056b3" : "#007bff", // Darker blue on hover
-            color: "#fff",
-            border: "none",
-            borderRadius: "10px",
-            cursor: "pointer",
-            transition: "background 0.3s ease", // Smooth transition for hover effect
-          }}
-        >
-          Send
-        </button>
+          </div>
+        )}
       </div>
 
-      {/* Text below the input box */}
-      <p style={{ fontSize: "12px", color: "#888", textAlign: "center", marginTop: "5px" }}>
-        LayoffEmailGPT can make mistakes. Check important info.
-      </p>
+      {/* Main Content */}
+      <div style={{ flex: "1", padding: "20px", transition: "margin-left 0.3s ease" }}>
+        {/* Header with "LayoffEmailGPT" and Expand Sidebar Button */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <h2>LayoffEmailGPT</h2>
+          {!isSidebarOpen && (
+            <button
+              onClick={() => setIsSidebarOpen(true)}
+              style={{
+                background: "#007bff",
+                color: "#fff",
+                border: "none",
+                padding: "10px",
+                borderRadius: "5px",
+                cursor: "pointer",
+              }}
+            >
+              Expand Sidebar
+            </button>
+          )}
+        </div>
+
+        <div style={{ border: "0px", padding: "10px", flex: "1", overflowY: "scroll", height: "80vh" }}>
+          {messages.map((msg, index) => (
+            <div
+              key={index}
+              style={{
+                textAlign: msg.sender === "bot" ? "left" : "right",
+              }}
+            >
+              <p
+                style={{
+                  background: msg.sender === "bot" ? "#f1f1f1" : "#007bff",
+                  color: msg.sender === "bot" ? "#000" : "#fff",
+                  display: "inline-block",
+                  padding: "10px",
+                  borderRadius: "10px",
+                  maxWidth: "70%",
+                }}
+              >
+                {/* Replace newlines with <br /> */}
+                {msg.text.split("\n").map((line, i) => (
+                  <span key={i}>
+                    {line}
+                    {i < msg.text.split("\n").length - 1 && <br />} {/* Add a line break between lines */}
+                  </span>
+                ))}
+              </p>
+            </div>
+          ))}
+          {/* Empty div to serve as the scroll anchor */}
+          <div ref={chatEndRef}></div>
+        </div>
+
+        {/* Suggestion Buttons */}
+        {currentQuestionIndex < questions.length && (
+          <div style={{ marginTop: "10px" }}>
+            {questions[currentQuestionIndex]?.suggestions?.map((suggestion, index) => (
+              <button
+                key={index}
+                onClick={() => handleSuggestionClick(suggestion)}
+                onMouseEnter={() => setHoverIndex(index)} // Set hover index
+                onMouseLeave={() => setHoverIndex(null)} // Remove hover index
+                style={{
+                  margin: "5px",
+                  padding: "10px",
+                  background: hoverIndex === index ? "#0056b3" : "#007bff", // Darker blue on hover
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: "10px",
+                  cursor: "pointer",
+                  transition: "background 0.3s ease", // Smooth transition for hover effect
+                }}
+              >
+                {suggestion}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Input Box and Send Button */}
+        <div style={{ marginTop: "10px", display: "flex", flexDirection: "row", width: "100%" }}>
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder="Message LayoffEmailGPT"
+            style={{ flex: "1", padding: "10px", border: "0px", borderRadius: "10px", background: "#f1f1f1" }}
+          />
+          <button
+            onClick={() => {
+              handleSend(input);
+              setInput("");
+            }}
+            onMouseEnter={() => setIsSendButtonHovered(true)} // Set hover state for "Send" button
+            onMouseLeave={() => setIsSendButtonHovered(false)} // Remove hover state for "Send" button
+            style={{
+              padding: "10px",
+              marginLeft: "10px",
+              background: isSendButtonHovered ? "#0056b3" : "#007bff", // Darker blue on hover
+              color: "#fff",
+              border: "none",
+              borderRadius: "10px",
+              cursor: "pointer",
+              transition: "background 0.3s ease", // Smooth transition for hover effect
+            }}
+          >
+            Send
+          </button>
+        </div>
+
+        {/* Text below the input box */}
+        <p style={{ fontSize: "12px", color: "#888", textAlign: "center", marginTop: "5px" }}>
+          LayoffEmailGPT can make mistakes. Check important info.
+        </p>
+      </div>
     </div>
   );
 }
