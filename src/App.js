@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 
 function App() {
   // Predefined list of questions with unique suggestions
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
   const questions = [
     { question: "Hello! I'm a chatbot that can help you write a layoff email\n\n" +
       "I'll ask you a few questions and all you have to do is provide an answer. I'll do the rest. " +
@@ -84,101 +85,190 @@ function App() {
     }
   };
 
-  // Hover states for buttons
-  const [hoverIndex, setHoverIndex] = useState(null);
-  const [isSendButtonHovered, setIsSendButtonHovered] = useState(false); // State for "Send" button hover
-
   return (
-    <div style={{ padding: "20px", width: "80%", maxWidth: "800px", margin: "auto", fontFamily: "Arial", height: "85vh", display: "flex", flexDirection: "column" }}>
-      <p><b>LayoffEmailGPT</b></p>
-
-      <div style={{ padding: "10px", flex: "1", overflowY: "scroll" }}>
-      {messages.map((msg, index) => (
-        <div key={index} style={{ textAlign: msg.sender === "bot" ? "left" : "right" }}>
-          <p style={{
-            background: msg.sender === "bot" ? "#f1f1f1" : "#007bff",
-            color: msg.sender === "bot" ? "#000" : "#fff",
-            display: "inline-block",
+    <div style={{ display: "flex", height: "100vh", overflow: "hidden" }}>
+      {/* Sidebar */}
+      <div
+        style={{
+          position: isSidebarOpen ? "fixed" : "relative",
+          width: isSidebarOpen ? "250px" : "60px",
+          background: "#f1f1f1", // Changed to light gray
+          color: "#000", // Changed text color to black
+          height: "100%",
+          overflow: "hidden",
+          zIndex: 1000,
+          transition: "width 0.3s ease",
+        }}
+      >
+        <button
+          onClick={() => setSidebarOpen(!isSidebarOpen)}
+          style={{
+            background: "transparent",
+            color: "#000", // Updated to black
+            border: "none",
+            fontSize: "20px",
+            cursor: "pointer",
             padding: "10px",
-            borderRadius: "10px",
-            maxWidth: "70%",
-          }}>
-            {/* Replace newlines with <br /> */}
-            {msg.text.split("\n").map((line, i) => (
-              <span key={i}>
-                {line}
-                {i < msg.text.split("\n").length - 1 && <br />} {/* Add a line break between lines */}
-              </span>
-            ))}
-          </p>
-        </div>
-      ))}
-        {/* Empty div to serve as the scroll anchor */}
-        <div ref={chatEndRef}></div>
+            textAlign: "center",
+            display: "block",
+            width: "100%",
+          }}
+        >
+          ☰
+        </button>
       </div>
 
-      {/* Suggestion Buttons */}
-      {currentQuestionIndex < questions.length && (
-        <div style={{ marginTop: "10px" }}>
-          {questions[currentQuestionIndex]?.suggestions?.map((suggestion, index) => (
-            <button
+      <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+        {/* Horizontal Navigation Bar */}
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: isSidebarOpen ? "250px" : "60px",
+            right: 0,
+            background: "#fff",
+            color: "#000",
+            padding: "10px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            zIndex: 1000,
+            transition: "left 0.3s ease",
+          }}
+        >
+          <p
+            style={{
+              margin: 0,
+              fontSize: "18px",
+              fontWeight: "bold",
+              color: "#000",
+            }}
+          >
+            LayoffEmailGPT
+          </p>
+        </div>
+
+        {/* Chat History */}
+        <div
+          style={{
+            flex: "1",
+            padding: "20px",
+            paddingTop: "70px", // Account for the fixed navbar height
+            marginLeft: isSidebarOpen ? "250px" : "60px",
+            overflowY: "auto", // Enable scrolling for chat history
+            fontFamily: "Arial",
+            transition: "margin-left 0.3s ease",
+          }}
+        >
+          {messages.map((msg, index) => (
+            <div
               key={index}
-              onClick={() => handleSuggestionClick(suggestion)}
-              onMouseEnter={() => setHoverIndex(index)} // Set hover index
-              onMouseLeave={() => setHoverIndex(null)} // Remove hover index
+              style={{ textAlign: msg.sender === "bot" ? "left" : "right" }}
+            >
+              <p
+                style={{
+                  background: msg.sender === "bot" ? "#f1f1f1" : "#007bff",
+                  color: msg.sender === "bot" ? "#000" : "#fff",
+                  display: "inline-block",
+                  padding: "10px",
+                  borderRadius: "10px",
+                  maxWidth: "70%",
+                }}
+              >
+                {msg.text.split("\n").map((line, i) => (
+                  <span key={i}>
+                    {line}
+                    {i < msg.text.split("\n").length - 1 && <br />}
+                  </span>
+                ))}
+              </p>
+            </div>
+          ))}
+          <div ref={chatEndRef}></div>
+        </div>
+
+        {/* Footer */}
+        <div
+          style={{
+            background: "#fff",
+            borderTop: "0px solid #ccc",
+            padding: "10px",
+            display: "flex",
+            flexDirection: "column",
+            marginLeft: isSidebarOpen ? "250px" : "0px", // Adjust margin for the sidebar
+            transition: "margin-left 0.3s ease",
+          }}
+        >
+          <div style={{ marginBottom: "10px" }}>
+            {currentQuestionIndex < questions.length &&
+              questions[currentQuestionIndex]?.suggestions?.map(
+                (suggestion, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleSuggestionClick(suggestion)}
+                    style={{
+                      margin: "5px",
+                      padding: "10px",
+                      background: "#007bff",
+                      color: "#fff",
+                      border: "none",
+                      borderRadius: "10px",
+                      cursor: "pointer",
+                      transition: "background 0.3s ease",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.target.style.background = "#0056b3")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.target.style.background = "#007bff")
+                    }
+                  >
+                    {suggestion}
+                  </button>
+                )
+              )}
+          </div>
+          <div style={{ display: "flex", marginBottom: "5px" }}>
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="Message LayoffEmailGPT"
               style={{
-                margin: "5px",
+                flex: "1",
                 padding: "10px",
-                background: hoverIndex === index ? "#0056b3" : "#007bff", // Darker blue on hover
+                border: "0px",
+                borderRadius: "10px",
+                background: "#f1f1f1",
+              }}
+            />
+            <button
+              onClick={() => {
+                handleSend(input);
+                setInput("");
+              }}
+              style={{
+                marginLeft: "10px",
+                padding: "10px",
+                background: "#007bff",
                 color: "#fff",
                 border: "none",
                 borderRadius: "10px",
                 cursor: "pointer",
-                transition: "background 0.3s ease", // Smooth transition for hover effect
+                transition: "background 0.3s ease",
               }}
+              onMouseEnter={(e) => (e.target.style.background = "#0056b3")}
+              onMouseLeave={(e) => (e.target.style.background = "#007bff")}
             >
-              {suggestion}
+              Send
             </button>
-          ))}
+          </div>
+          <p style={{ fontSize: "12px", color: "#888", textAlign: "center" }}>
+            LayoffEmailGPT can make mistakes. Check important info.
+          </p>
         </div>
-      )}
-
-      {/* Input Box and Send Button */}
-      <div style={{ marginTop: "10px", display: "flex", flexDirection: "row", width: "100%" }}>
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyDown}
-          placeholder="Message LayoffEmailGPT"
-          style={{ flex: "1", padding: "10px", border: "0px", borderRadius: "10px", background: "#f1f1f1" }}
-        />
-        <button
-          onClick={() => {
-            handleSend(input);
-            setInput("");
-          }}
-          onMouseEnter={() => setIsSendButtonHovered(true)} // Set hover state for "Send" button
-          onMouseLeave={() => setIsSendButtonHovered(false)} // Remove hover state for "Send" button
-          style={{
-            padding: "10px",
-            marginLeft: "10px",
-            background: isSendButtonHovered ? "#0056b3" : "#007bff", // Darker blue on hover
-            color: "#fff",
-            border: "none",
-            borderRadius: "10px",
-            cursor: "pointer",
-            transition: "background 0.3s ease", // Smooth transition for hover effect
-          }}
-        >
-          Send
-        </button>
       </div>
-
-      {/* Text below the input box */}
-      <p style={{ fontSize: "12px", color: "#888", textAlign: "center", marginTop: "5px" }}>
-        LayoffEmailGPT can make mistakes. Check important info.
-      </p>
     </div>
   );
 }
