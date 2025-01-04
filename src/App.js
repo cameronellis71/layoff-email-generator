@@ -1,29 +1,31 @@
 import React, { useState, useRef, useEffect } from "react";
 
 function App() {
-  // Predefined list of questions with unique suggestions
   const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [currentView, setCurrentView] = useState("chat"); // Tracks which view is displayed
+
   const questions = [
-    { question: "Hello! I'm a chatbot that can help you write a layoff email\n\n" +
-      "I'll ask you a few questions and all you have to do is provide an answer. I'll do the rest. " +
-      "\n\nIf you can't think of anything, use one of the suggestions below" +
-      "\n\nTo start, can you give me a number?", suggestions: ["10,000", "1,000", "5,000"] },
+    {
+      question:
+        "Hello! I'm a chatbot that can help you write a layoff email\n\n" +
+        "I'll ask you a few questions and all you have to do is provide an answer. I'll do the rest. " +
+        "\n\nIf you can't think of anything, use one of the suggestions below" +
+        "\n\nTo start, can you give me a number?",
+      suggestions: ["10,000", "1,000", "5,000"],
+    },
     { question: "Can you give me a company name?", suggestions: ["Snup", "Macrosoft", "TokTik"] },
     { question: "Can you give me a reason for the layoff?", suggestions: ["conflict in the Middle East", "macroeconomic headwinds", "Mercury in retrograde"] },
     { question: "Can you give me a number?", suggestions: ["10,000", "1,000", "5,000"] },
-    { question: "Can you give me a name?", suggestions: ["Evan", "Jeff", "Sundar"]}
+    { question: "Can you give me a name?", suggestions: ["Evan", "Jeff", "Sundar"] },
   ];
 
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // Tracks current question
-  const [responses, setResponses] = useState([]); // Stores user responses
-  const [input, setInput] = useState(""); // User input
-  const [messages, setMessages] = useState([
-    { sender: "bot", text: questions[0].question }, // Initial question
-  ]);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [responses, setResponses] = useState([]);
+  const [input, setInput] = useState("");
+  const [messages, setMessages] = useState([{ sender: "bot", text: questions[0].question }]);
 
-  const chatEndRef = useRef(null); // Reference to the end of the chat
+  const chatEndRef = useRef(null);
 
-  // Scroll to the bottom of the chat when messages change
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -31,57 +33,58 @@ function App() {
   const handleSend = (inputText) => {
     if (!inputText.trim()) return;
 
-    // Add user's response to chat
     setMessages((prev) => [...prev, { sender: "user", text: inputText }]);
     setResponses((prev) => [...prev, inputText]);
 
-    // Move to next question
     const nextQuestionIndex = currentQuestionIndex + 1;
 
     if (currentQuestionIndex < questions.length - 1) {
-      // Add the next question to chat
-      setMessages((prev) => [
-        ...prev,
-        { sender: "bot", text: questions[nextQuestionIndex].question },
-      ]);
-
+      setMessages((prev) => [...prev, { sender: "bot", text: questions[nextQuestionIndex].question }]);
     } else {
-      // If no more questions, display the summary
       const answers = responses.concat(inputText);
 
-      const generatedEmail = "Got it, here's what I was able to come up with for you:\n\n" +
-      "Dear Team,\n\n" +
-      "Today we are making some significant changes to the structure of our team and the design of our organization " +
-      "which will result in aproximately " + answers[0] + " team members leaving " + answers[1] + ". We believe " +
-      "these changes are necessary because of " + answers[2] + " and " + answers[3] + " internet memes." +
-      "\n\n" +
-      "We know our unique culture, and our values of being kind, smart, and creative, are a reflection of the " +
-      "amazing people who work at " + answers[1] + ". It pains me that many people I have deeply enjoyed working" +
-      " with, who I know firsthand are extremely talented, will no longer be members of our team at " + answers[1] + ". We are" +
-      " infinitely grateful for your contributions, your hard work, and your ambition to make a positive impact" +
-      " in the world." +
-      "\n\n" +
-      answers[4] +
-      "\n\n\nPlease let me know if you'd like me to create another layoff email for you"
+      const generatedEmail =
+        "Got it, here's what I was able to come up with for you:\n\n" +
+        "Dear Team,\n\n" +
+        "Today we are making some significant changes to the structure of our team and the design of our organization " +
+        "which will result in approximately " +
+        answers[0] +
+        " team members leaving " +
+        answers[1] +
+        ". We believe " +
+        "these changes are necessary because of " +
+        answers[2] +
+        " and " +
+        answers[3] +
+        " internet memes." +
+        "\n\n" +
+        "We know our unique culture, and our values of being kind, smart, and creative, are a reflection of the " +
+        "amazing people who work at " +
+        answers[1] +
+        ". It pains me that many people I have deeply enjoyed working" +
+        " with, who I know firsthand are extremely talented, will no longer be members of our team at " +
+        answers[1] +
+        ". We are" +
+        " infinitely grateful for your contributions, your hard work, and your ambition to make a positive impact" +
+        " in the world." +
+        "\n\n" +
+        answers[4] +
+        "\n\n\nPlease let me know if you'd like me to create another layoff email for you";
 
-      setMessages((prev) => [
-        ...prev,
-        { sender: "bot", text: generatedEmail },
-      ]);
+      setMessages((prev) => [...prev, { sender: "bot", text: generatedEmail }]);
     }
     setCurrentQuestionIndex(nextQuestionIndex);
-    // Clear input field
     setInput("");
   };
 
   const handleSuggestionClick = (suggestion) => {
-    handleSend(suggestion); // Submit the suggestion directly
+    handleSend(suggestion);
   };
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       handleSend(input);
-      e.preventDefault(); // Prevents default behavior like form submission
+      e.preventDefault();
     }
   };
 
@@ -90,10 +93,10 @@ function App() {
       {/* Sidebar */}
       <div
         style={{
-          position: isSidebarOpen ? "fixed" : "relative",
+          position: "relative",
           width: isSidebarOpen ? "250px" : "60px",
-          background: "#f1f1f1", // Changed to light gray
-          color: "#000", // Changed text color to black
+          background: "#f1f1f1",
+          color: "#000",
           height: "100%",
           overflow: "hidden",
           zIndex: 1000,
@@ -104,7 +107,7 @@ function App() {
           onClick={() => setSidebarOpen(!isSidebarOpen)}
           style={{
             background: "transparent",
-            color: "#000", // Updated to black
+            color: "#000",
             border: "none",
             fontSize: "20px",
             cursor: "pointer",
@@ -116,158 +119,126 @@ function App() {
         >
           ☰
         </button>
-      </div>
 
-      <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-        {/* Horizontal Navigation Bar */}
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: isSidebarOpen ? "250px" : "60px",
-            right: 0,
-            background: "#fff",
-            color: "#000",
-            padding: "10px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            zIndex: 1000,
-            transition: "left 0.3s ease",
-          }}
-        >
-          <p
-            style={{
-              margin: 0,
-              fontSize: "18px",
-              fontWeight: "bold",
-              color: "#000",
-            }}
-          >
-            LayoffEmailGPT
-          </p>
-        </div>
-
-        {/* Chat History */}
-        <div
-          style={{
-            flex: "1",
-            padding: "20px",
-            paddingTop: "70px", // Account for the fixed navbar height
-            marginLeft: isSidebarOpen ? "250px" : "60px",
-            overflowY: "auto", // Enable scrolling for chat history
-            fontFamily: "Arial",
-            transition: "margin-left 0.3s ease",
-          }}
-        >
-          {messages.map((msg, index) => (
-            <div
-              key={index}
-              style={{ textAlign: msg.sender === "bot" ? "left" : "right" }}
-            >
-              <p
-                style={{
-                  background: msg.sender === "bot" ? "#f1f1f1" : "#007bff",
-                  color: msg.sender === "bot" ? "#000" : "#fff",
-                  display: "inline-block",
-                  padding: "10px",
-                  borderRadius: "10px",
-                  maxWidth: "70%",
-                }}
-              >
-                {msg.text.split("\n").map((line, i) => (
-                  <span key={i}>
-                    {line}
-                    {i < msg.text.split("\n").length - 1 && <br />}
-                  </span>
-                ))}
-              </p>
-            </div>
-          ))}
-          <div ref={chatEndRef}></div>
-        </div>
-
-        {/* Footer */}
-        <div
-          style={{
-            background: "#fff",
-            borderTop: "0px solid #ccc",
-            padding: "10px",
-            display: "flex",
-            flexDirection: "column",
-            marginLeft: isSidebarOpen ? "250px" : "0px", // Adjust margin for the sidebar
-            transition: "margin-left 0.3s ease",
-          }}
-        >
-          <div style={{ marginBottom: "10px" }}>
-            {currentQuestionIndex < questions.length &&
-              questions[currentQuestionIndex]?.suggestions?.map(
-                (suggestion, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleSuggestionClick(suggestion)}
-                    style={{
-                      margin: "5px",
-                      padding: "10px",
-                      background: "#007bff",
-                      color: "#fff",
-                      border: "none",
-                      borderRadius: "10px",
-                      cursor: "pointer",
-                      transition: "background 0.3s ease",
-                    }}
-                    onMouseEnter={(e) =>
-                      (e.target.style.background = "#0056b3")
-                    }
-                    onMouseLeave={(e) =>
-                      (e.target.style.background = "#007bff")
-                    }
-                  >
-                    {suggestion}
-                  </button>
-                )
-              )}
-          </div>
-          <div style={{ display: "flex", marginBottom: "5px" }}>
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder="Message LayoffEmailGPT"
-              style={{
-                flex: "1",
-                padding: "10px",
-                border: "0px",
-                borderRadius: "10px",
-                background: "#f1f1f1",
-              }}
-            />
+        {isSidebarOpen && (
+          <div style={{ padding: "10px" }}>
             <button
-              onClick={() => {
-                handleSend(input);
-                setInput("");
-              }}
+              onClick={() => setCurrentView("chat")}
               style={{
-                marginLeft: "10px",
+                display: "block",
+                width: "100%",
                 padding: "10px",
+                margin: "5px 0",
                 background: "#007bff",
                 color: "#fff",
                 border: "none",
-                borderRadius: "10px",
+                borderRadius: "5px",
                 cursor: "pointer",
-                transition: "background 0.3s ease",
+                textAlign: "left",
               }}
-              onMouseEnter={(e) => (e.target.style.background = "#0056b3")}
-              onMouseLeave={(e) => (e.target.style.background = "#007bff")}
             >
-              Send
+              Home
+            </button>
+            <button
+              onClick={() => setCurrentView("donate")}
+              style={{
+                display: "block",
+                width: "100%",
+                padding: "10px",
+                margin: "5px 0",
+                background: "#007bff",
+                color: "#fff",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+                textAlign: "left",
+              }}
+            >
+              Donate
+            </button>
+            <button
+              onClick={() => setCurrentView("about")}
+              style={{
+                display: "block",
+                width: "100%",
+                padding: "10px",
+                margin: "5px 0",
+                background: "#007bff",
+                color: "#fff",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+                textAlign: "left",
+              }}
+            >
+              About
             </button>
           </div>
-          <p style={{ fontSize: "12px", color: "#888", textAlign: "center" }}>
-            LayoffEmailGPT can make mistakes. Check important info.
-          </p>
-        </div>
+        )}
+      </div>
+
+      <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+        {currentView === "chat" && (
+          <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+            <div style={{ flex: 1, overflowY: "auto", padding: "10px" }}>
+              {messages.map((message, index) => (
+                <div
+                  key={index}
+                  style={{
+                    alignSelf: message.sender === "user" ? "flex-end" : "flex-start",
+                    background: message.sender === "user" ? "#007bff" : "#e1e1e1",
+                    color: message.sender === "user" ? "#fff" : "#000",
+                    borderRadius: "10px",
+                    padding: "10px",
+                    margin: "5px 0",
+                    maxWidth: "70%",
+                  }}
+                >
+                  {message.text}
+                </div>
+              ))}
+              <div ref={chatEndRef} />
+            </div>
+            <div style={{ padding: "10px", display: "flex", gap: "10px" }}>
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Type your response..."
+                style={{
+                  flex: 1,
+                  padding: "10px",
+                  borderRadius: "5px",
+                  border: "1px solid #ccc",
+                }}
+              />
+              <button
+                onClick={() => handleSend(input)}
+                style={{
+                  padding: "10px 20px",
+                  borderRadius: "5px",
+                  background: "#007bff",
+                  color: "#fff",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+              >
+                Send
+              </button>
+            </div>
+          </div>
+        )}
+        {currentView === "donate" && (
+          <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <h1>Donate Page</h1>
+          </div>
+        )}
+        {currentView === "about" && (
+          <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <h1>About Page</h1>
+          </div>
+        )}
       </div>
     </div>
   );
