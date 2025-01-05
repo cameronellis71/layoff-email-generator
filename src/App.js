@@ -177,46 +177,46 @@ function App() {
           <>
             {/* Chat history */}
             <div
-    style={{
-      flex: "1",
-      padding: "20px",
-      paddingTop: "70px", // Account for the fixed navbar height
-      marginLeft: isSidebarOpen ? "250px" : "60px",
-      overflowY: "auto", // Enable scrolling for chat history
-      fontFamily: "Arial",
-      transition: "margin-left 0.3s ease",
-    }}
-  >
-    {messages.map((msg, index) => (
-      <div
-        key={index}
-        style={{
-          display: "flex",
-          justifyContent: msg.sender === "bot" ? "flex-start" : "flex-end",
-          marginBottom: "10px", // Adds spacing between messages
-        }}
-      >
-        <div
-          style={{
-            background: msg.sender === "bot" ? "#f1f1f1" : "#007bff",
-            color: msg.sender === "bot" ? "#000" : "#fff",
-            padding: "10px",
-            borderRadius: "10px",
-            maxWidth: "70%",
-            wordWrap: "break-word",
-          }}
-        >
-          {msg.text.split("\n").map((line, i) => (
-            <span key={i}>
-              {line}
-              {i < msg.text.split("\n").length - 1 && <br />}
-            </span>
-          ))}
-        </div>
-      </div>
-    ))}
-    <div ref={chatEndRef}></div>
-  </div>
+              style={{
+                flex: "1",
+                padding: "20px",
+                paddingTop: "70px", // Account for the fixed navbar height
+                marginLeft: isSidebarOpen ? "250px" : "60px",
+                overflowY: "auto", // Enable scrolling for chat history
+                fontFamily: "Arial",
+                transition: "margin-left 0.3s ease",
+              }}
+            >
+              {messages.map((msg, index) => (
+                <div
+                  key={index}
+                  style={{
+                    display: "flex",
+                    justifyContent: msg.sender === "bot" ? "flex-start" : "flex-end",
+                    marginBottom: "10px", // Adds spacing between messages
+                  }}
+                >
+                  <div
+                    style={{
+                      background: msg.sender === "bot" ? "#f1f1f1" : "#007bff",
+                      color: msg.sender === "bot" ? "#000" : "#fff",
+                      padding: "10px",
+                      borderRadius: "10px",
+                      maxWidth: "70%",
+                      wordWrap: "break-word",
+                    }}
+                  >
+                    {msg.text.split("\n").map((line, i) => (
+                      <span key={i}>
+                        {line}
+                        {i < msg.text.split("\n").length - 1 && <br />}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+              <div ref={chatEndRef}></div>
+            </div>
 
             {/* Footer */}
             <div
