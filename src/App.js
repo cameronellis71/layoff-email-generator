@@ -304,6 +304,25 @@ function App() {
             </div>
           </>
         )}
+
+        {currentView === "about" && (
+          <div
+            style={{
+              flex: 1,
+              padding: "20px",
+              paddingTop: "50px", // Account for the fixed navbar height
+              marginLeft: isSidebarOpen ? "250px" : "60px",
+              fontFamily: "Arial",
+              transition: "margin-left 0.3s ease",
+            }}
+          >
+            <p>
+              Welcome to the About page. This is a placeholder text to test the
+              script functionality. Replace this with detailed information about
+              LayoffEmailGPT or anything you'd like to display on this page.
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
