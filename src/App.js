@@ -103,15 +103,19 @@ function App() {
         <button
           onClick={() => setSidebarOpen(!isSidebarOpen)}
           style={{
-            background: "transparent",
+            background: "#f1f1f1", // Slightly darker gray
             border: "none",
+            borderRadius: "10px",
             fontSize: "20px",
             cursor: "pointer",
             padding: "10px",
             textAlign: "center",
             display: "block",
             width: "100%",
+            transition: "background 0.3s ease", // Smooth transition for hover effect
           }}
+          onMouseEnter={(e) => (e.target.style.background = "#c0c0c0")} // Darker gray on hover
+          onMouseLeave={(e) => (e.target.style.background = "#f1f1f1")} // Reset to original color
         >
           ☰
         </button>
