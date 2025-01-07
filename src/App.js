@@ -197,7 +197,7 @@ function App() {
                 flex: "1",
                 padding: "20px",
                 paddingTop: "70px", // Account for the fixed navbar height
-                marginLeft: isSidebarOpen ? "250px" : "60px",
+                marginLeft: isSidebarOpen ? "250px" : "10px",
                 overflowY: "auto", // Enable scrolling for chat history
                 fontFamily: "Arial",
                 transition: "margin-left 0.3s ease",
@@ -241,7 +241,7 @@ function App() {
                 padding: "10px",
                 display: "flex",
                 flexDirection: "column",
-                marginLeft: isSidebarOpen ? "250px" : "60px",
+                marginLeft: isSidebarOpen ? "250px" : "10px",
                 transition: "margin-left 0.3s ease",
               }}
             >
@@ -352,7 +352,7 @@ function App() {
               flex: 1,
               padding: "20px",
               paddingTop: "50px", // Account for the fixed navbar height
-              marginLeft: isSidebarOpen ? "250px" : "60px",
+              marginLeft: isSidebarOpen ? "250px" : "10px",
               fontFamily: "Arial",
               transition: "margin-left 0.3s ease",
             }}
