@@ -76,3 +76,15 @@
 .open-sidebar-button:hover {
   background: #c0c0c0; /* Darker gray on hover */
 }
+
+.sidebar-options {
+  display: block;
+  padding: 10px;
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 10px; /* Adds spacing between the buttons */
+  background: #e0e0e0; /* Slightly darker gray */
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
