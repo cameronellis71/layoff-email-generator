@@ -247,32 +247,57 @@ function App() {
             >
               <div style={{ marginBottom: "10px" }}>
                 {currentQuestionIndex < questions.length &&
-                  questions[currentQuestionIndex]?.suggestions?.map(
-                    (suggestion, index) => (
-                      <button
-                        key={index}
-                        onClick={() => handleSuggestionClick(suggestion)}
-                        style={{
-                          margin: "5px",
-                          padding: "10px",
-                          background: "#007bff",
-                          color: "#fff",
-                          border: "none",
-                          borderRadius: "10px",
-                          cursor: "pointer",
-                          transition: "background 0.3s ease",
-                        }}
-                        onMouseEnter={(e) =>
-                          (e.target.style.background = "#0056b3")
-                        }
-                        onMouseLeave={(e) =>
-                          (e.target.style.background = "#007bff")
-                        }
-                      >
-                        {suggestion}
-                      </button>
-                    )
-                  )}
+                  questions[currentQuestionIndex]?.suggestions?.map((suggestion, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleSuggestionClick(suggestion)}
+                      style={{
+                        margin: "5px",
+                        padding: "10px",
+                        background: "#007bff",
+                        color: "#fff",
+                        border: "none",
+                        borderRadius: "10px",
+                        cursor: "pointer",
+                        transition: "background 0.3s ease",
+                      }}
+                      onMouseEnter={(e) => (e.target.style.background = "#0056b3")}
+                      onMouseLeave={(e) => (e.target.style.background = "#007bff")}
+                    >
+                      {suggestion}
+                    </button>
+                  ))}
+
+                {/* Display suggestions when email is generated */}
+                {currentQuestionIndex >= questions.length && (
+                  <>
+                    <button
+                      onClick={() => {
+                        // Append a new email conversation to the message history
+                        setMessages((prev) => [
+                          ...prev,
+                          { sender: "bot", text: "Let's start a new layoff email. Can you give me a number?" },
+                        ]);
+                        setCurrentQuestionIndex(0); // Reset to the first question
+                        setResponses([]); // Clear previous responses
+                      }}
+                      style={{
+                        margin: "5px",
+                        padding: "10px",
+                        background: "#007bff",
+                        color: "#fff",
+                        border: "none",
+                        borderRadius: "10px",
+                        cursor: "pointer",
+                        transition: "background 0.3s ease",
+                      }}
+                      onMouseEnter={(e) => (e.target.style.background = "#0056b3")}
+                      onMouseLeave={(e) => (e.target.style.background = "#007bff")}
+                    >
+                      New Email
+                    </button>
+                  </>
+                )}
               </div>
               <div style={{ display: "flex", marginBottom: "5px" }}>
                 <input
