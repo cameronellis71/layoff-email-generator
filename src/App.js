@@ -125,7 +125,13 @@ function App() {
                 borderRadius: "10px",
                 width: "100%",
                 marginBottom: "10px", // Adds spacing between the buttons
+                background: "#e0e0e0", // Slightly darker gray
+                border: "none",
+                cursor: "pointer",
+                transition: "background 0.3s ease", // Smooth transition for hover effect
               }}
+              onMouseEnter={(e) => (e.target.style.background = "#c0c0c0")} // Darker gray on hover
+              onMouseLeave={(e) => (e.target.style.background = "#e0e0e0")} // Reset to original color
             >
               Chat
             </button>
@@ -136,7 +142,13 @@ function App() {
                 padding: "10px",
                 borderRadius: "10px",
                 width: "100%",
+                background: "#e0e0e0", // Slightly darker gray
+                border: "none",
+                cursor: "pointer",
+                transition: "background 0.3s ease", // Smooth transition for hover effect
               }}
+              onMouseEnter={(e) => (e.target.style.background = "#c0c0c0")} // Darker gray on hover
+              onMouseLeave={(e) => (e.target.style.background = "#e0e0e0")} // Reset to original color
             >
               About
             </button>
