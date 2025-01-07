@@ -314,16 +314,7 @@ function App() {
                     handleSend(input);
                     setInput("");
                   }}
-                  style={{
-                    marginLeft: "10px",
-                    padding: "10px",
-                    background: "#007bff",
-                    color: "#fff",
-                    border: "none",
-                    borderRadius: "10px",
-                    cursor: "pointer",
-                    transition: "background 0.3s ease",
-                  }}
+                  className="send-button"
                   onMouseEnter={(e) =>
                     (e.target.style.background = "#0056b3")
                   }

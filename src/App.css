@@ -44,3 +44,18 @@
   border-radius: 10px;
   background: #f1f1f1;
 }
+
+.send-button {
+  margin-left: 10px;
+  padding: 10px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.send-button:hover {
+  background: #0056b3;
+}
