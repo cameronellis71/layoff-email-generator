@@ -332,10 +332,13 @@ function App() {
               transition: "margin-left 0.3s ease",
             }}
           >
+            <h2>About</h2>
             <p>
-              Welcome to the About page. This is a placeholder text to test the
-              script functionality. Replace this with detailed information about
-              LayoffEmailGPT or anything you'd like to display on this page.
+              LayoffEmailGPT is a generative AI chatbot that creates human-like & engaging layoff emails with the help of user-supplied suggestions.<br></br>
+            </p>
+            <h3>Donate</h3>
+            <p>
+              The creator of LayoffEmailGPT is currently unemployed because of a layoff.
             </p>
           </div>
         )}
