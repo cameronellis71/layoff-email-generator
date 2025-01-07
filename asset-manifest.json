@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/layoff-email-generator/static/css/main.e6c13ad2.css",
-    "main.js": "/layoff-email-generator/static/js/main.19f73a5f.js",
+    "main.js": "/layoff-email-generator/static/js/main.2cefb0c4.js",
     "static/js/488.9c92ff38.chunk.js": "/layoff-email-generator/static/js/488.9c92ff38.chunk.js",
     "index.html": "/layoff-email-generator/index.html",
     "main.e6c13ad2.css.map": "/layoff-email-generator/static/css/main.e6c13ad2.css.map",
-    "main.19f73a5f.js.map": "/layoff-email-generator/static/js/main.19f73a5f.js.map",
+    "main.2cefb0c4.js.map": "/layoff-email-generator/static/js/main.2cefb0c4.js.map",
     "488.9c92ff38.chunk.js.map": "/layoff-email-generator/static/js/488.9c92ff38.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.19f73a5f.js"
+    "static/js/main.2cefb0c4.js"
   ]
 }
