@@ -117,7 +117,7 @@ function App() {
           onMouseEnter={(e) => (e.target.style.background = "#c0c0c0")} // Darker gray on hover
           onMouseLeave={(e) => (e.target.style.background = "#f1f1f1")} // Reset to original color
         >
-          ☰
+          <b>☰</b>
         </button>
         {isSidebarOpen && (
           <div style={{ padding: "10px" }}>
@@ -137,7 +137,7 @@ function App() {
               onMouseEnter={(e) => (e.target.style.background = "#c0c0c0")} // Darker gray on hover
               onMouseLeave={(e) => (e.target.style.background = "#e0e0e0")} // Reset to original color
             >
-              Chat
+              <b>Chat</b>
             </button>
             <button
               onClick={() => setCurrentView("about")}
@@ -154,7 +154,7 @@ function App() {
               onMouseEnter={(e) => (e.target.style.background = "#c0c0c0")} // Darker gray on hover
               onMouseLeave={(e) => (e.target.style.background = "#e0e0e0")} // Reset to original color
             >
-              About
+              <b>About</b>
             </button>
           </div>
         )}
