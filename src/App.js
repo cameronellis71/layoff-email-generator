@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import './App.css';
 
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -306,13 +307,7 @@ function App() {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="Message LayoffEmailGPT"
-                  style={{
-                    flex: 1,
-                    padding: "10px",
-                    border: "0px",
-                    borderRadius: "10px",
-                    background: "#f1f1f1",
-                  }}
+                  className="input-box"
                 />
                 <button
                   onClick={() => {
