@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -261,18 +262,8 @@ function App() {
                         setCurrentQuestionIndex(0); // Reset to the first question
                         setResponses([]); // Clear previous responses
                       }}
-                      style={{
-                        margin: "5px",
-                        padding: "10px",
-                        background: "#007bff",
-                        color: "#fff",
-                        border: "none",
-                        borderRadius: "10px",
-                        cursor: "pointer",
-                        transition: "background 0.3s ease",
-                      }}
-                      onMouseEnter={(e) => (e.target.style.background = "#0056b3")}
-                      onMouseLeave={(e) => (e.target.style.background = "#007bff")}
+                      type="button"
+                      class="btn btn-primary"
                     >
                       New Email
                     </button>
