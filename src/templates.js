@@ -92,7 +92,10 @@ const templates = [
         },
         questions: [
             {
-                question: "Can you give me a number?",
+                question: "Hello! I'm a chatbot that helps you write layoff emails\n\n" +
+                "I'll ask you a few questions and all you have to do is provide an answer. I'll do the rest." +
+                "\n\nIf you can't think of anything, use one of the suggestions below" +
+                "\n\nTo start, can you give me a number?",
                 suggestions: ["170", "1,000", "300"],
                 answerKey: "numEmployeesLaidOff",
             },
@@ -127,7 +130,10 @@ const templates = [
         },
         questions: [
             {
-                question: "Can you give me a number?",
+                question: "Hello! I'm a chatbot that helps you write layoff emails\n\n" +
+                "I'll ask you a few questions and all you have to do is provide an answer. I'll do the rest." +
+                "\n\nIf you can't think of anything, use one of the suggestions below" +
+                "\n\nTo start, can you give me a number?",
                 suggestions: ["11,000", "1,000", "20,000"],
                 answerKey: "numEmployeesLaidOff",
             },
