@@ -1,20 +1,37 @@
 import React, { useState, useRef, useEffect } from "react";
 import './App.css';
 
+let templateToUse = Math.floor(Math.random() * 10) + 1
+
+// Predefined list of questions with unique suggestions
+const questions = [
+  { 
+    question: "Hello! I'm a chatbot that helps you write layoff emails\n\n" +
+    "I'll ask you a few questions and all you have to do is provide an answer. I'll do the rest." +
+    "\n\nIf you can't think of anything, use one of the suggestions below" +
+    "\n\nTo start, can you give me a number?", 
+    suggestions: ["10,000", "1,000", "5,000"] 
+  },
+  { 
+    question: "Can you give me a company name?",
+    suggestions: ["Snup", "Macrosoft", "TokTik"] },
+  { 
+    question: "Can you give me a reason for the layoff?",
+    suggestions: ["conflict in the Middle East", "macroeconomic headwinds", "Mercury in retrograde"] 
+  },
+  { 
+    question: "Can you give me a number?",
+    suggestions: ["10,000", "1,000", "5,000"]
+  },
+  { 
+    question: "Can you give me a name?",
+    suggestions: ["Evan", "Jeff", "Sundar"]
+  }
+];
+
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [currentView, setCurrentView] = useState("chat");
-  // Predefined list of questions with unique suggestions
-  const questions = [
-    { question: "Hello! I'm a chatbot that helps you write layoff emails\n\n" +
-      "I'll ask you a few questions and all you have to do is provide an answer. I'll do the rest." +
-      "\n\nIf you can't think of anything, use one of the suggestions below" +
-      "\n\nTo start, can you give me a number?", suggestions: ["10,000", "1,000", "5,000"] },
-    { question: "Can you give me a company name?", suggestions: ["Snup", "Macrosoft", "TokTik"] },
-    { question: "Can you give me a reason for the layoff?", suggestions: ["conflict in the Middle East", "macroeconomic headwinds", "Mercury in retrograde"] },
-    { question: "Can you give me a number?", suggestions: ["10,000", "1,000", "5,000"] },
-    { question: "Can you give me a name?", suggestions: ["Evan", "Jeff", "Sundar"]}
-  ];
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // Tracks current question
   const [responses, setResponses] = useState([]); // Stores user responses
@@ -48,6 +65,7 @@ function App() {
       ]);
 
     } else {
+      console.log("templateToUse: ", templateToUse)
       // If no more questions, display the summary
       const answers = responses.concat(inputText);
 
@@ -261,6 +279,8 @@ function App() {
                         ]);
                         setCurrentQuestionIndex(0); // Reset to the first question
                         setResponses([]); // Clear previous responses
+                        templateToUse = Math.floor(Math.random() * 10) + 1
+                        console.log("templateToUse inside the New Email button: ", templateToUse)
                       }}
                       style={{
                         margin: "5px",
