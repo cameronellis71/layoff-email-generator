@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import './App.css';
 
-let templateToUse = Math.floor(Math.random())
+let templateToUse = 0
 
 let templates = [
   {
@@ -59,60 +59,6 @@ let templates = [
   },
 ]
 
-function generateEmail(answers) {
-  return `
-Got it, here's what I was able to come up with for you:
-
-Dear Team,
-
-Today we are making some significant changes to the structure of our team and the design of our
-organization which will result in approximately ${answers[0]} team members leaving ${answers[1]}.
-We believe these changes are necessary because of ${answers[2]} and ${answers[3]} internet memes.
-
-We know our unique culture, and our values of being kind, smart, and creative, are a reflection
-of the amazing people who work at ${answers[1]}. It pains me that many people I have deeply
-enjoyed working with, who I know firsthand are extremely talented, will no longer be members of
-our team at ${answers[1]}. We are infinitely grateful for your contributions, your hard work,
-and your ambition to make a positive impact in the world.
-
-${answers[4]}
-
-Please let me know if you'd like me to create another layoff email for you.
-  `;
-}
-
-// Predefined list of questions with unique suggestions
-const questions = [
-  { 
-    question: "Hello! I'm a chatbot that helps you write layoff emails\n\n" +
-    "I'll ask you a few questions and all you have to do is provide an answer. I'll do the rest." +
-    "\n\nIf you can't think of anything, use one of the suggestions below" +
-    "\n\nTo start, can you give me a number?", 
-    suggestions: ["10,000", "1,000", "5,000"],
-    answerKey: "numEmployeesLaidOff",
-  },
-  { 
-    question: "Can you give me a company name?",
-    suggestions: ["Snup", "Macrosoft", "TokTik"],
-    answerKey: "companyName",
-  },
-  { 
-    question: "Can you give me a reason for the layoff?",
-    suggestions: ["conflict in the Middle East", "macroeconomic headwinds", "Mercury in retrograde"],
-    answerKey: "layoffReason",
-  },
-  { 
-    question: "Can you give me a number?",
-    suggestions: ["10,000", "1,000", "5,000"],
-    answerKey: "numInternetMemes",
-  },
-  { 
-    question: "Can you give me a name?",
-    suggestions: ["Evan", "Jeff", "Sundar"],
-    answerKey: "layoffEmailAuthor"
-  }
-];
-
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [currentView, setCurrentView] = useState("chat");
@@ -121,7 +67,7 @@ function App() {
   const [responses, setResponses] = useState([]); // Stores user responses
   const [input, setInput] = useState(""); // User input
   const [messages, setMessages] = useState([
-    { sender: "bot", text: questions[0].question }, // Initial question
+    { sender: "bot", text: templates[templateToUse].questions[0].question }, // Initial question
   ]);
 
   const chatEndRef = useRef(null); // Reference to the end of the chat
@@ -141,15 +87,14 @@ function App() {
     // Move to next question
     const nextQuestionIndex = currentQuestionIndex + 1;
 
-    if (currentQuestionIndex < questions.length - 1) {
+    if (currentQuestionIndex < templates[templateToUse].questions.length - 1) {
       // Add the next question to chat
       setMessages((prev) => [
         ...prev,
-        { sender: "bot", text: questions[nextQuestionIndex].question },
+        { sender: "bot", text: templates[templateToUse].questions[nextQuestionIndex].question },
       ]);
 
     } else {
-      console.log("templateToUse: ", templateToUse)
       // If no more questions, display the summary
       // Store the last question in the answer list
       const answers = responses.concat(inputText);
@@ -315,8 +260,8 @@ function App() {
               }}
             >
               <div style={{ marginBottom: "10px" }}>
-                {currentQuestionIndex < questions.length &&
-                  questions[currentQuestionIndex]?.suggestions?.map((suggestion, index) => (
+                {currentQuestionIndex < templates[templateToUse].questions.length &&
+                  templates[templateToUse].questions[currentQuestionIndex]?.suggestions?.map((suggestion, index) => (
                     <button
                       key={index}
                       onClick={() => handleSuggestionClick(suggestion)}
@@ -338,7 +283,7 @@ function App() {
                   ))}
 
                 {/* Display suggestions when email is generated */}
-                {currentQuestionIndex >= questions.length && (
+                {currentQuestionIndex >= templates[templateToUse].questions.length && (
                   <>
                     <button
                       onClick={() => {
@@ -350,8 +295,6 @@ function App() {
                         ]);
                         setCurrentQuestionIndex(0); // Reset to the first question
                         setResponses([]); // Clear previous responses
-                        templateToUse = Math.floor(Math.random() * 10) + 1
-                        console.log("templateToUse inside the New Email button: ", templateToUse)
                       }}
                       style={{
                         margin: "5px",
