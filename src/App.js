@@ -5,7 +5,7 @@ let templateToUse = Math.floor(Math.random())
 
 let templates = [
   {
-    template: function generateEmail(answers) {
+    template: (answers) => {
       return `
         Got it, here's what I was able to come up with for you:
 
@@ -153,7 +153,7 @@ function App() {
       // If no more questions, display the summary
       // Store the last question in the answer list
       const answers = responses.concat(inputText);
-      const generatedEmail = generateEmail(answers)
+      const generatedEmail = templates[templateToUse].template(answers)
 
       setMessages((prev) => [
         ...prev,
