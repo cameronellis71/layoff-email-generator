@@ -256,6 +256,7 @@ function App() {
                         // Append a new email conversation to the message history
                         setMessages((prev) => [
                           ...prev,
+                          { sender: "user", text: "New Email"},
                           { sender: "bot", text: "Let's start a new layoff email. Can you give me a number?" },
                         ]);
                         setCurrentQuestionIndex(0); // Reset to the first question
