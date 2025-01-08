@@ -2,7 +2,8 @@
 
 Effortlessly create tailored & engaging layoff emails with a focus on quality, relevance, & brevity
 
-<img width="686" alt="LayoffEmailGPT" src="https://github.com/user-attachments/assets/4b761855-c046-4aa3-95c1-a1231369920a" />
+<img width="746" alt="Screenshot 2025-01-08 at 1 53 37 PM" src="https://github.com/user-attachments/assets/1802fa32-5a2c-4678-b71a-df32f288f01e" />
+
 
 ## Getting Started
 ### Dependencies
