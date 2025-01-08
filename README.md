@@ -32,6 +32,7 @@ In the project directory, you can run:
 
 ## Authors
 - [@cameronellis71](https://github.com/cameronellis71)
+- Michael Verbera
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
