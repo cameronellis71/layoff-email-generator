@@ -237,7 +237,7 @@ function App() {
                         setMessages((prev) => [
                           ...prev,
                           { sender: "user", text: "New Email"},
-                          { sender: "bot", text: "Let's start a new layoff email. Can you give me a number?" },
+                          { sender: "bot", text: "Can you give me a number?" },
                         ]);
                         templateToUse = Math.floor(Math.random() * numTemplates)
                         setCurrentQuestionIndex(0); // Reset to the first question
