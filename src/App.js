@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import './App.css';
 import { templates } from './templates.js'
 
-let templateToUse = 0
+const numTemplates = templates.length
+let templateToUse = Math.floor(Math.random() * numTemplates)
 
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -238,6 +239,7 @@ function App() {
                           { sender: "user", text: "New Email"},
                           { sender: "bot", text: "Let's start a new layoff email. Can you give me a number?" },
                         ]);
+                        templateToUse = Math.floor(Math.random() * numTemplates)
                         setCurrentQuestionIndex(0); // Reset to the first question
                         setResponses([]); // Clear previous responses
                       }}
