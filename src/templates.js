@@ -1,8 +1,7 @@
 const templates = [
     {
       template: (answers) => {
-        return `
-          Got it, here's what I was able to come up with for you:
+        return `Got it, here's what I was able to come up with for you:
 
           Dear Team,
 
@@ -115,8 +114,7 @@ const templates = [
     },
     {
         template: (answers) => {
-            return `
-                Got it, here's what I was able to come up with for you:
+            return `Got it, here's what I was able to come up with for you:
 
                 Today I’m sharing some of the most difficult changes we’ve made in Meta’s history. I’ve decided to reduce the size of our team by about ${answers[2]} and let more than ${answers[0]} of our talented employees go. We are also taking a number of additional steps to become a leaner and more efficient company by cutting discretionary spending and extending our hiring freeze through Q1.
 
