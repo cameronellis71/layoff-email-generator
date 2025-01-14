@@ -15,7 +15,7 @@ const templates = [
           `work, and your ambition to make a positive impact in the world.
   
           ${answers[4]}
-  
+
           Please let me know if you'd like me to create another layoff email for you.
         `;
       },
@@ -87,7 +87,8 @@ const templates = [
             Take care of yourselves and let’s look out for each other through this particularly challenging time.
 
             ${answers[3]}
-            `
+
+            Please let me know if you'd like for me to create another layoff email for you.`
         },
         questions: [
             {
@@ -124,7 +125,8 @@ const templates = [
                 I want to take accountability for these decisions and for how we got here. I know this is tough for everyone, and I’m especially sorry to those impacted.
 
                 ${answers[1]}
-            `
+
+                Please let me know if you'd like for me to create another layoff email for you.`
         },
         questions: [
             {
