@@ -183,7 +183,7 @@ function App() {
               color: "#000",
             }}
           >
-            LayoffEmailGPT
+            LayoffGPT
           </p>
         </div>
 
@@ -297,7 +297,7 @@ function App() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder="Message LayoffEmailGPT"
+                  placeholder="Message LayoffGPT"
                   className="input-box"
                 />
                 <button
@@ -317,7 +317,7 @@ function App() {
                 </button>
               </div>
               <p style={{ fontSize: "12px", color: "#888", textAlign: "center" }}>
-                LayoffEmailGPT can make mistakes. Check important info.
+                LayoffGPT can make mistakes. Check important info.
               </p>
             </div>
           </>
@@ -336,11 +336,11 @@ function App() {
           >
             <h2>About</h2>
             <p>
-              LayoffEmailGPT is a generative AI chatbot that creates human-like & engaging layoff emails with the help of user-supplied suggestions.<br></br>
+              LayoffGPT is a generative AI chatbot that creates human-like & engaging layoff emails with the help of user-supplied suggestions.<br></br>
             </p>
             <h3>Donate</h3>
             <p>
-              The creator of LayoffEmailGPT is currently unemployed because of a layoff.
+              The creator of LayoffGPT is currently unemployed because of a layoff.
             </p>
           </div>
         )}
