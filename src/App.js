@@ -4,6 +4,9 @@ import { templates } from './templates.js'
 
 const numTemplates = templates.length
 let templateToUse = Math.floor(Math.random() * numTemplates)
+// gameState is initially set to 'interview' because the first thing that LayoffGPT does
+// is ask a question
+let gameState = "interview"
 
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -26,6 +29,24 @@ function App() {
   const handleSend = (inputText) => {
     if (!inputText.trim()) return;
 
+    // Clear input field
+    setInput("");
+
+    if (gameState === "navigate") {
+      // Make not case-sensitive
+      inputText = inputText.toLowerCase()
+      if (inputText === "new email") {
+        // Need to hide the suggestions after this
+        // Go down and see if the same logic can be recycled and moved to a helper function
+        console.log("`new email` was inputted!")
+        handleNewEmailButtonClick()
+      } else {
+        console.log("input not recognized")
+      }
+
+      return
+    }
+
     // Add user's response to chat
     setMessages((prev) => [...prev, { sender: "user", text: inputText }]);
     setResponses((prev) => [...prev, inputText]);
@@ -41,7 +62,7 @@ function App() {
       ]);
 
     } else {
-      // If no more questions, display the summary
+      // If no more questions, display the generated email
       // Store the last question in the answer list
       const answers = responses.concat(inputText);
       const generatedEmail = templates[templateToUse].template(answers)
@@ -50,11 +71,28 @@ function App() {
         ...prev,
         { sender: "bot", text: generatedEmail },
       ]);
+
+      // Set game state to navigate after the email has been generated
+      gameState = "navigate"
     }
     setCurrentQuestionIndex(nextQuestionIndex);
-    // Clear input field
-    setInput("");
   };
+
+  const handleNewEmailButtonClick = () => {
+    // Append a new email conversation to the message history
+    setMessages((prev) => [
+      ...prev,
+      { sender: "user", text: "New Email"},
+      { sender: "bot", text: "Can you give me a number?" },
+    ]);
+    // Determine which email template to use next
+    templateToUse = Math.floor(Math.random() * numTemplates)
+    setCurrentQuestionIndex(0); // Reset to the first question
+    setResponses([]); // Clear previous responses
+
+    // Update game state so that it's back in 'interview' mode
+    gameState = "interview"
+  }
 
   const handleSuggestionClick = (suggestion) => {
     handleSend(suggestion); // Submit the suggestion directly
@@ -233,15 +271,7 @@ function App() {
                   <>
                     <button
                       onClick={() => {
-                        // Append a new email conversation to the message history
-                        setMessages((prev) => [
-                          ...prev,
-                          { sender: "user", text: "New Email"},
-                          { sender: "bot", text: "Can you give me a number?" },
-                        ]);
-                        templateToUse = Math.floor(Math.random() * numTemplates)
-                        setCurrentQuestionIndex(0); // Reset to the first question
-                        setResponses([]); // Clear previous responses
+                        handleNewEmailButtonClick()
                       }}
                       style={{
                         margin: "5px",
