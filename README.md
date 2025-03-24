@@ -1,4 +1,4 @@
-# [LayoffEmail GPT](https://cameronellis71.github.io/layoff-email-generator/)
+# [LayoffGPT](https://cameronellis71.github.io/layoff-email-generator/)
 
 Effortlessly create tailored & engaging layoff emails with a focus on quality, relevance, & brevity
 
@@ -8,7 +8,6 @@ Effortlessly create tailored & engaging layoff emails with a focus on quality, r
 ## Getting Started
 ### Dependencies
 [![React][React.js]][React-url]
-[![Bootstrap][Bootstrap.com]][Bootstrap-url]
 
 ### Running Locally
 
@@ -33,7 +32,6 @@ In the project directory, you can run:
 
 ## Authors
 - [@cameronellis71](https://github.com/cameronellis71)
-- Michael Verbera
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
