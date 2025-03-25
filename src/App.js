@@ -105,6 +105,15 @@ function App() {
     }
   };
 
+  const handleAboutButtonClick = () => {
+    setMessages((prev) => [
+      ...prev,
+      { sender: "user", text: "About"},
+      { sender: "bot", text: "LayoffGPT is a generative AI chatbot that " +
+        "creates human-like & engaging layoff emails with the help of user-supplied suggestions." },
+    ]);
+  }
+
   return (
     <div style={{ display: "flex", height: "100vh", overflow: "hidden" }}>
       {/* Sidebar */}
@@ -287,6 +296,25 @@ function App() {
                       onMouseLeave={(e) => (e.target.style.background = "#007bff")}
                     >
                       New Email
+                    </button>
+                    <button
+                      onClick={() => {
+                        handleAboutButtonClick()
+                      }}
+                      style={{
+                        margin: "5px",
+                        padding: "10px",
+                        background: "#007bff",
+                        color: "#fff",
+                        border: "none",
+                        borderRadius: "10px",
+                        cursor: "pointer",
+                        transition: "background 0.3s ease",
+                      }}
+                      onMouseEnter={(e) => (e.target.style.background = "#0056b3")}
+                      onMouseLeave={(e) => (e.target.style.background = "#007bff")}
+                    >
+                      About
                     </button>
                   </>
                 )}
