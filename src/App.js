@@ -59,20 +59,13 @@ function App() {
 
     if (currentQuestionIndex < templates[templateToUse].questions.length - 1) {
       // Add the next question to chat
-      setMessages((prev) => [
-        ...prev,
-        { sender: "bot", text: templates[templateToUse].questions[nextQuestionIndex].question },
-      ]);
+      addBotMessage(templates[templateToUse].questions[nextQuestionIndex].question);
 
     } else {
       // If no more questions, display the generated email
       // Map answerKey to inputText in responseMap
       const generatedEmail = templates[templateToUse].template(responseMap)
-
-      setMessages((prev) => [
-        ...prev,
-        { sender: "bot", text: generatedEmail },
-      ]);
+      addBotMessage(generatedEmail);
 
       // Set game state to navigate after the email has been generated
       gameState = "navigate"
@@ -115,6 +108,33 @@ function App() {
         "creates human-like & engaging layoff emails with the help of user-supplied suggestions." },
     ]);
   }
+
+  const addBotMessage = (fullText) => {
+    let index = 0;
+    
+    setMessages((prev) => [...prev, { sender: "bot", text: "", isComplete: false }]); // Add bot message placeholder
+  
+    const interval = setInterval(() => {
+      setMessages((prev) => {
+        // Clone previous messages
+        const newMessages = [...prev];
+  
+        // Get the last bot message
+        const lastMessage = newMessages[newMessages.length - 1];
+  
+        // Ensure we're only updating the last bot message
+        if (lastMessage.sender === "bot" && !lastMessage.isComplete) {
+          lastMessage.text = fullText.slice(0, index + 1);
+          lastMessage.isComplete = index + 1 === fullText.length;
+        }
+  
+        return newMessages;
+      });
+  
+      index++;
+      if (index === fullText.length) clearInterval(interval);
+    }, 5); // Adjust typing speed here
+  };
 
   return (
     <div style={{ display: "flex", height: "100vh", overflow: "hidden" }}>
