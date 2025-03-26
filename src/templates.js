@@ -58,7 +58,7 @@ const templates = [
             meeting and share some context.
             
             Today we are making the unfortunate and difficult decision to 
-            reduce the size of Discord’s workforce by 17%. This means we are 
+            reduce the size of ${answers.get("companyName")}’s workforce by ${answers.get("percentageEmployeesLaidOff")}. This means we are 
             saying goodbye to ${answers.get("numEmployeesLaidOff")} of our talented colleagues. This 
             is a decision we did not take lightly, but it is one that we have
             conviction in to better serve our users, our business and our 
@@ -73,7 +73,7 @@ const templates = [
 
             At the same time, we have to face some hard truths. We grew 
             quickly and expanded our workforce even faster, increasing by 5x 
-            since 2020. As a result, we took on more projects and became less 
+            since ${answers.get("layoffYear")}. As a result, we took on more projects and became less 
             efficient in how we operated.
 
             Today, we are increasingly clear on the need to sharpen our focus
@@ -97,7 +97,7 @@ const templates = [
             11:00 a.m. PT to discuss next steps
 
             - For all remaining employees, we will come back together this 
-            afternoon at 1:00 p.m. PT to talk about what’s next
+            afternoon at ${answers.get("meetingTime")} to talk about what’s next
 
             How we’re taking care of our colleagues
 
@@ -137,9 +137,24 @@ const templates = [
                 answerKey: "monthsOfSalary"
             },
             {
+              question: "Can you give me a percentage?",
+              suggestions: ["69%", "420%", "10%"],
+              answerKey: "percentageEmployeesLaidOff",
+            },
+            {
+              question: "Can you give me a year?",
+              suggestions: ["1776", "2020", "1999"],
+              answerKey: "layoffYear",
+            },
+            {
                 question: "Can you give me a name?",
                 suggestions: ["Evan", "Jeff", "Jason"],
                 answerKey: "layoffEmailAuthor"
+            },
+            {
+              question: "Can you give me another time of day?",
+              suggestions: ["11:59 p.m. PT", "4:30 p.m. PT", "2:30 p.m. PT"],
+              answerKey: "meetingTime",
             },
         ],
     },
