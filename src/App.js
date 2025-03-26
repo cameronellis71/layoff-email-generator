@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import './App.css';
 import { templates } from './templates.js'
+import SidebarButton from "./components/SidebarButton.js";
 
 const numTemplates = templates.length
 let templateToUse = Math.floor(Math.random() * numTemplates)
@@ -9,6 +10,8 @@ let templateToUse = Math.floor(Math.random() * numTemplates)
 let gameState = "interview"
 
 function App() {
+  // Track which sidebar button is active
+  const [activeButton, setActiveButton] = useState(""); 
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [currentView, setCurrentView] = useState("chat");
 
@@ -138,31 +141,18 @@ function App() {
         </button>
         {isSidebarOpen && (
           <div style={{ padding: "10px" }}>
-            <button
-              onClick={() => setCurrentView("chat")}
-              className="sidebar-options"
-              onMouseEnter={(e) => (e.target.style.background = "#c0c0c0")} // Darker gray on hover
-              onMouseLeave={(e) => (e.target.style.background = "#e0e0e0")} // Reset to original color
-            >
-              Chat
-            </button>
-            <button
-              onClick={() => setCurrentView("about")}
-              style={{
-                display: "block",
-                padding: "10px",
-                borderRadius: "10px",
-                width: "100%",
-                background: "#e0e0e0", // Slightly darker gray
-                border: "none",
-                cursor: "pointer",
-                transition: "background 0.3s ease", // Smooth transition for hover effect
-              }}
-              onMouseEnter={(e) => (e.target.style.background = "#c0c0c0")} // Darker gray on hover
-              onMouseLeave={(e) => (e.target.style.background = "#e0e0e0")} // Reset to original color
-            >
-              About
-            </button>
+            <SidebarButton
+              label="Chat" 
+              setCurrentView={setCurrentView} 
+              activeButton={activeButton} 
+              setActiveButton={setActiveButton} 
+            />
+            <SidebarButton
+              label="About"
+              setCurrentView={setCurrentView}
+              activeButton={activeButton}
+              setActiveButton={setActiveButton}
+            />
           </div>
         )}
       </div>
