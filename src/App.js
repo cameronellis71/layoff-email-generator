@@ -104,9 +104,8 @@ function App() {
     setMessages((prev) => [
       ...prev,
       { sender: "user", text: "About"},
-      { sender: "bot", text: "LayoffGPT is a generative AI chatbot that " +
-        "creates human-like & engaging layoff emails with the help of user-supplied suggestions." },
     ]);
+    addBotMessage("LayoffGPT is a generative AI chatbot that creates human-like & engaging layoff emails with the help of user-supplied suggestions.");
   }
 
   const addBotMessage = (fullText) => {
