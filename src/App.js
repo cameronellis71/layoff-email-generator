@@ -16,7 +16,7 @@ function App() {
   const [currentView, setCurrentView] = useState("chat");
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // Tracks current question
-  const [responses, setResponses] = useState([]); // Stores user responses
+  const [responseMap, setResponseMap] = useState(new Map());
   const [input, setInput] = useState(""); // User input
   const [messages, setMessages] = useState([
     { sender: "bot", text: templates[templateToUse].questions[0].question }, // Initial question
@@ -52,7 +52,7 @@ function App() {
 
     // Add user's response to chat
     setMessages((prev) => [...prev, { sender: "user", text: inputText }]);
-    setResponses((prev) => [...prev, inputText]);
+    responseMap.set(templates[templateToUse].questions[currentQuestionIndex].answerKey, inputText);
 
     // Move to next question
     const nextQuestionIndex = currentQuestionIndex + 1;
@@ -66,9 +66,8 @@ function App() {
 
     } else {
       // If no more questions, display the generated email
-      // Store the last question in the answer list
-      const answers = responses.concat(inputText);
-      const generatedEmail = templates[templateToUse].template(answers)
+      // Map answerKey to inputText in responseMap
+      const generatedEmail = templates[templateToUse].template(responseMap)
 
       setMessages((prev) => [
         ...prev,
@@ -91,7 +90,7 @@ function App() {
     // Determine which email template to use next
     templateToUse = Math.floor(Math.random() * numTemplates)
     setCurrentQuestionIndex(0); // Reset to the first question
-    setResponses([]); // Clear previous responses
+    setResponseMap(new Map());
 
     // Update game state so that it's back in 'interview' mode
     gameState = "interview"
