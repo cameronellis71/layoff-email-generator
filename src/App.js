@@ -376,7 +376,8 @@ function App() {
             </p>
             <h3>Donate</h3>
             <p>
-              The creator of LayoffGPT is currently unemployed because of a layoff.
+              The creator of LayoffGPT is currently unemployed because of a layoff. If you'd like to support him while he looks for a new job, please
+              consider donating at <a href="https://buymeacoffee.com/layoffgpt">Buy Me A Coffee</a>
             </p>
           </div>
         )}
