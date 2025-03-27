@@ -2,7 +2,7 @@
 
 Effortlessly create tailored & engaging layoff emails with a focus on quality, relevance, & brevity
 
-<img width="500" alt="Screenshot 2025-01-08 at 1 53 37 PM" src="https://github.com/user-attachments/assets/1802fa32-5a2c-4678-b71a-df32f288f01e" />
+<img wifth="500" alt="Screenshot 2025-03-26 at 5 41 42 PM" src="https://github.com/user-attachments/assets/2e1cbdd3-bd34-4014-ac0f-1f957ddf6df8" />
 
 
 ## Getting Started
