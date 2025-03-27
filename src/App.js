@@ -324,6 +324,18 @@ function App() {
                     >
                       About
                     </button>
+                    <button
+                      onClick={() => window.open("https://www.buymeacoffee.com/layoffgpt", "_blank")}
+                      className="send-button"
+                      onMouseEnter={(e) => (e.target.style.background = "#0056b3")}
+                      onMouseLeave={(e) => (e.target.style.background = "#007bff")}
+                      style={{
+                        margin: "5px",
+                        padding: "10px",
+                      }}
+                    >
+                      Donate
+                    </button>
                   </>
                 )}
               </div>
@@ -377,8 +389,18 @@ function App() {
             <h3>Donate</h3>
             <p>
               The creator of LayoffGPT is currently unemployed because of a layoff. If you'd like to support him while he looks for a new job, please
-              consider donating at <a href="https://buymeacoffee.com/layoffgpt">Buy Me A Coffee</a>
+              consider donating at Buy Me A Coffee
             </p>
+            <a href="https://www.buymeacoffee.com/layoffgpt" target="_blank">
+              <img
+                src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+                alt="Buy Me a Coffee"
+                style={{
+                  height: "50px",
+                  width: "auto",
+                }}
+              />
+            </a>
           </div>
         )}
       </div>
