@@ -132,7 +132,7 @@ function App() {
   
       index++;
       if (index === fullText.length) clearInterval(interval);
-    }, 5); // Adjust typing speed here
+    }, 1); // Adjust typing speed here
   };
 
   return (
