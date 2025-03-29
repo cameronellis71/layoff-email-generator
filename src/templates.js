@@ -196,6 +196,85 @@ const templates = [
             },
         ],
     },
+    {
+      template: (answers) => {
+        return `hi all.
+
+          today we’ll be making some org changes, including eliminating roles and beginning the consultation process in countries where required. i want to give you all the straight facts.
+
+          as I said at the last meeting, there are three areas we’d like to address:
+
+          strategy: reducing from teams that are off strategy, and fixing our discipline ratios.
+          performance: parting ways with people with a “${answers.get("perfRating")}” or trending towards “${answers.get("perfRating")}.”
+          hierarchy: driving to ${answers.get("hierarchy")} our org to a max depth of innercore+4
+          what that translates to in actual numbers of people:
+
+          strategy: 391 people
+          performance: 460 people
+          hierarchy: ${answers.get("numManagersMoveToICRoles")} managers (with 193 moving it individual contributor roles)
+          we’re also closing all the 748 roles we had open with the exception of:
+
+          roles progressed to offer stage.
+          critical operational roles
+          start/accelerate roles
+          key leadership roles
+          none of the above points are trying to hit a specific financial target, replacing folks with ${answers.get("folksReplacedWith")}, or changing our headcount cap. they are specific to our needs around strategy, raising the bar and acting faster on performance, and flattening our org so we can move faster and with less abstraction.
+
+          why do this all at once instead of over time? we’re behind in our actions, and that’s not fair to the individuals who work here or the company. when we know, we should move, and there hasn’t been enough movement. we need to move to help us meet and stay ahead of the transformational moment our industry is in.
+
+          this is the ${answers.get("difficultyLevel")} part of my job, and I fight hard against any of these considerations. we must have a very high bar of correctness for us to take any action, which takes iteration and time to get right. i always balance this with the fact that everyone here, and those that are departing, has equity in our company. it’s my job to increase that value. we believe this will help us focus and execute better to do just that.
+
+          we’re working to give clarity to everyone as quickly, with as much context and support, as possible. you’ll receive ${answers.get("wayToCommunicate")} soon about what this means for you. if there are areas where you think we could do better, please send me a note. direct feedback makes us better, and I always act when it makes sense.
+=
+          thank you to all those leaving us. i am grateful and appreciative for you and your work, which has built us up to this point. we will continue to honor that by increasing our value to our customers, and therefore to all of our shareholders, including you.
+
+          thank you,
+
+          ${answers.get("layoffEmailAuthor")}
+
+          Please let me know if you'd like for me to create another layoff email for you.`
+      },
+      questions: [
+        {
+          question: "Hello! I'm a chatbot that helps you write layoff emails\n\n" +
+          "I'll ask you a few questions and all you have to do is provide an answer. I'll do the rest." +
+          "\n\nIf you can't think of anything, use one of the suggestions below" +
+          "\n\nTo start, can you give me a number?",
+          suggestions: ["420", "9,000", "2"],
+          answerKey: "numManagersMoveToICRoles",
+        },
+        {
+          question: "Can you give me an adjetive ending in -est?",
+          suggestions: ["easiest", "toughest", "hardest", "dumbest", "best", "coolest"],
+          answerKey: "difficultyLevel",
+        },
+        {
+          question: "Can you give me a name?",
+          suggestions: ["chris", "angela", "jack"],
+          answerKey: "layoffEmailAuthor",
+        },
+        {
+          question: "Can you give me a noun?",
+          suggestions: ["developers in Nigeria", "AI", "squirrels"],
+          answerKey: "folksReplacedWith",
+        },
+        {
+          question: "Can you give me a means of communication?",
+          suggestions: ["an email", "a letter by carrier pidgeon", "a letter by bicycle messenger", "a doodle", "a smoke signal"],
+          answerKey: "wayToCommunicate",
+        },
+        {
+          question: "Can you give me a perf rating",
+          suggestions: ["meets", "exceeds", "below"],
+          answerKey: "perfRating",
+        },
+        {
+          question: "Can you give me an adjective?",
+          suggestions: ["flatten", "expand", "keep"],
+          answerKey: "hierarchy",
+        },
+      ]
+    }
   ]
 
 export { templates }
