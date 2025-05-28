@@ -1,4 +1,4 @@
-# [LayoffGPT](https://cameronellis71.github.io/layoff-email-generator/)
+# [LayoffGPT](layoffgpt.com)
 
 Effortlessly create tailored & engaging layoff emails with a focus on quality, relevance, & brevity
 
