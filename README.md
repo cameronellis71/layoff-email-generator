@@ -1,4 +1,4 @@
-# [LayoffGPT](layoffgpt.com)
+# [LayoffGPT](https://www.layoffgpt.com/)
 
 Effortlessly create tailored & engaging layoff emails with a focus on quality, relevance, & brevity
 
