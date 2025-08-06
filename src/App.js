@@ -391,7 +391,7 @@ function App() {
               The creator of LayoffGPT is currently unemployed and looking for a new job. If you'd like to support him while he looks for a new job, please
               consider donating at Buy Me A Coffee or refer him to a job.
             </p>
-            <a href="https://www.buymeacoffee.com/layoffgpt" target="_blank">
+            <a href="https://www.buymeacoffee.com/layoffgpt" target="_blank" rel="noreferrer">
               <img
                 src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
                 alt="Buy Me a Coffee"
