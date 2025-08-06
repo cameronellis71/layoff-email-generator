@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const SidebarButton = ({ label, setCurrentView, activeButton, setActiveButton }) => {
   return (
     <div style={{ padding: "10px" }}>
