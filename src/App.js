@@ -105,7 +105,7 @@ function App() {
       ...prev,
       { sender: "user", text: "About"},
     ]);
-    addBotMessage("LayoffGPT is a generative AI chatbot that creates human-like & engaging layoff emails with the help of user-supplied suggestions.");
+    addBotMessage("LayoffGPT is a generative AI chatbot that creates human-like & engaging layoff emails with the help of user-supplied suggestions.\n\nThe creator of LayoffGPT is currently unemployed and looking for a new job. If you'd like to support him while he looks for a new job, please consider donating at Buy Me A Coffee or refer him to a job.");
   }
 
   const addBotMessage = (fullText) => {
@@ -388,8 +388,8 @@ function App() {
             </p>
             <h3>Donate</h3>
             <p>
-              The creator of LayoffGPT is currently unemployed because of a layoff. If you'd like to support him while he looks for a new job, please
-              consider donating at Buy Me A Coffee
+              The creator of LayoffGPT is currently unemployed and looking for a new job. If you'd like to support him while he looks for a new job, please
+              consider donating at Buy Me A Coffee or refer him to a job.
             </p>
             <a href="https://www.buymeacoffee.com/layoffgpt" target="_blank">
               <img
