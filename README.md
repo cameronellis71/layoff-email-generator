@@ -17,7 +17,7 @@ In the project directory, you can run:
      - Builds the app and deploys it to the server
 
 - `npm start`
-    - Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser
+    - Runs the app in the development mode. Open [http://localhost:3000/layoff-email-generator](http://localhost:3000/layoff-email-generator) to view it in your browser
         - This page will reload when you make changes
     - You may also see any lint errors in the console
 
